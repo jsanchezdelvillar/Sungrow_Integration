@@ -1,15 +1,15 @@
 {
-    "title": "Configuración de Custom Solar",
+    "title": "Configuración de Sungrow Integration",
     "config": {
         "step": {
             "user": {
-                "title": "Configurar Custom Solar",
+                "title": "Configurar Sungrow Integration",
                 "description": "Introduce la información necesaria para conectarte a la API de iSolarCloud.",
                 "data": {
                     "username": "Usuario",
                     "password": "Contraseña",
-                    "appkey": "Clave de la aplicación",
-                    "x_access_key": "Clave de acceso X",
+                    "appkey": "app key",
+                    "x_access_key": "x access key",
                     "public_key": "Clave pública RSA",
                     "ps_key": "PS key",
                     "point_id_list": "Lista de IDs de puntos",
