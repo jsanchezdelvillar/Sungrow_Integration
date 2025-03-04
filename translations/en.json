@@ -1,0 +1,20 @@
+{
+  "title": "Custom Solar Integration",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure Custom Solar",
+        "description": "Enter your credentials and API keys.",
+        "data": {
+          "username": "Username",
+          "password": "Password",
+          "appkey": "App Key",
+          "sung_secret": "Sungrow Secret",
+          "RSA_public": "RSA Public Key",
+          "ps_key": "PS Key",
+          "point_id_list": "Point ID List"
+        }
+      }
+    }
+  }
+}
