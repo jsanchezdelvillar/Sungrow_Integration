@@ -1,34 +1,41 @@
+from homeassistant.components.sensor import SensorEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from .const import DOMAIN, CONF_POINT_ID_LIST
+
 import logging
-from homeassistant.helpers.entity import Entity
-from homeassistant.core import HomeAssistant
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities):
-    """Set up the sensor platform."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]["coordinator"]
-    async_add_entities([SolarSensor(coordinator, "Power Output")])
-
-class SolarSensor(Entity):
-    """Representation of a Sensor."""
-    def __init__(self, coordinator: DataUpdateCoordinator, name: str):
-        """Initialize the sensor."""
-        self._coordinator = coordinator
-        self._name = name
-        self._state = None
+async def async_setup_entry(hass, entry, async_add_entities):
+    """Set up sensor platform from a config entry."""
+    api = hass.data[DOMAIN][entry.entry_id]
+    point_id_list = entry.data.get(CONF_POINT_ID_LIST, [])
+    sensor_names = entry.data.get("sensor_names", {})
     
-    @property
-    def name(self):
-        return self._name
+    sensors = [SolarSensor(api, point_id, sensor_names.get(point_id, f"Sensor {point_id}")) for point_id in point_id_list]
+    async_add_entities(sensors, True)
+
+class SolarSensor(CoordinatorEntity, SensorEntity):
+    """Representation of a Sensor."""
+
+    def __init__(self, api, point_id, name):
+        """Initialize the sensor."""
+        self.api = api
+        self._point_id = point_id
+        self._attr_name = name
+        self._attr_unique_id = f"solar_sensor_{point_id}"
+        self._state = None
 
     @property
     def state(self):
+        """Return the state of the sensor."""
         return self._state
 
     async def async_update(self):
-        """Fetch new state data."""
-        await self._coordinator.async_request_refresh()
-        self._state = self._coordinator.data.get("power_output")
+        """Fetch new state data for the sensor."""
+        data = await self.api.get_device_data()
+        if data:
+            values = data.get("data", {})
+            self._state = values.get(self._point_id, 0)
+        else:
+            _LOGGER.warning("Failed to update sensor data")
