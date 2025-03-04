@@ -1,8 +1,8 @@
 {
-  "name": "Tu Integración",
-  "url": "https://github.com/tu_usuario/tu_integracion",
-  "maintainer": "tu_usuario",
-  "domain": "tu_integracion",
+  "name": Sungrow integration",
+  "url": "https://github.com/jsanchezdelvillar/sungrow_integration",
+  "maintainer": "jsanchezdelvillar",
+  "domain": "sungrow_integration",
   "country": "global",
   "homeassistant": "2023.1.0",
   "custom": true
