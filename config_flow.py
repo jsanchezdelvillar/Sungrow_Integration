@@ -7,6 +7,17 @@ from .const import DOMAIN, CONF_USERNAME, CONF_PASSWORD, CONF_APPKEY, CONF_X_ACC
 
 _LOGGER = logging.getLogger(__name__)
 
+DATA_SCHEMA = vol.Schema({
+    vol.Required(CONF_USERNAME): str,
+    vol.Required(CONF_PASSWORD): str,
+    vol.Required(CONF_APPKEY): str,
+    vol.Required(CONF_X_ACCESS_KEY): str,
+    vol.Required(CONF_PUBLIC_KEY): str,
+    vol.Required(CONF_PS_KEY): str,
+    vol.Required(CONF_POINT_ID_LIST): list,
+    vol.Optional("sensor_names", default={}): dict
+})
+
 class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Custom Solar."""
 
@@ -21,15 +32,7 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema({
-                vol.Required(CONF_USERNAME): str,
-                vol.Required(CONF_PASSWORD): str,
-                vol.Required(CONF_APPKEY): str,
-                vol.Required(CONF_X_ACCESS_KEY): str,
-                vol.Required(CONF_PUBLIC_KEY): str,
-                vol.Required(CONF_PS_KEY): str,
-                vol.Required(CONF_POINT_ID_LIST): str,
-            }),
+            data_schema=DATA_SCHEMA,
             errors=errors,
         )
 
