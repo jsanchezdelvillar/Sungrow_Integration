@@ -1,4 +1,4 @@
-DOMAIN = "custom_solar"
+DOMAIN = "sungrow_integration"
 CONF_USERNAME = "username"
 CONF_PASSWORD = "password"
 CONF_APPKEY = "appkey"
