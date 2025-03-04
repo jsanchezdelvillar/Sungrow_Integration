@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "Custom Solar Configuration",
+        "title": "Sungrow Integration Configuration",
         "description": "Enter the credentials and settings for your solar monitoring system.",
         "data": {
           "username": "Username",
