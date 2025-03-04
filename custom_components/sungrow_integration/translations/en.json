@@ -17,4 +17,14 @@
       }
     }
   }
+    "services": {
+        "get_sensor_data": {
+            "name": "Obtener datos de sensores",
+            "description": "Obtiene y actualiza los datos de todos los sensores."
+        },
+        "update_token": {
+            "name": "Actualizar token",
+            "description": "Actualiza el token de autenticación de la API."
+        }
+    }
 }
