@@ -1,6 +1,6 @@
 {
   "domain": "sungrow_integration",
-  "name": "Sungrow Solar",
+  "name": "Sungrow integration",
   "version": "1.0.0",
   "documentation": "https://github.com/jsanchezdelvillar/Sungrow_Integration",
   "dependencies": [],
