@@ -1,25 +1,38 @@
 import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-
+from homeassistant.helpers.typing import ConfigType
 from .const import DOMAIN
-from .api import SolarAPI
 
 _LOGGER = logging.getLogger(__name__)
 
-def async_setup(hass: HomeAssistant, config: dict):
+async def async_setup(hass: HomeAssistant, config: ConfigType):
     """Set up the integration from configuration.yaml."""
     hass.data.setdefault(DOMAIN, {})
+
+    async def handle_get_sensor_data(call):
+        """Handle the service call to get sensor data."""
+        for entry_id, entry_data in hass.data[DOMAIN].items():
+            sensors = entry_data.get("sensors", {})
+            for sensor in sensors.values():
+                await sensor.async_update_ha_state()
+
+    async def handle_update_token(call):
+        """Handle the service call to update the authentication token."""
+        for entry_id, entry_data in hass.data[DOMAIN].items():
+            if "update_token" in entry_data:
+                await entry_data["update_token"]()
+
+    hass.services.async_register(DOMAIN, "get_sensor_data", handle_get_sensor_data)
+    hass.services.async_register(DOMAIN, "update_token", handle_update_token)
+
     return True
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up the integration from a config entry."""
     hass.data.setdefault(DOMAIN, {})
-    
-    # Crear instancia de la API y almacenarla en hass.data
-    api = SolarAPI(hass, entry.data)
-    hass.data[DOMAIN][entry.entry_id] = api
-    
+    hass.data[DOMAIN][entry.entry_id] = entry.data
+
     hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, "sensor"))
     return True
 
