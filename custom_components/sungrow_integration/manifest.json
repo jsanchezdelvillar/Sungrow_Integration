@@ -1,9 +1,12 @@
 {
-  "domain": "custom_solar",
-  "name": "Custom Solar",
+  "domain": "sungrow_integration",
+  "name": "Sungrow Solar",
   "version": "1.0.0",
-  "documentation": "https://www.example.com/documentation",
+  "documentation": "https://github.com/jsanchezdelvillar/Sungrow_Integration",
   "dependencies": [],
-  "codeowners": ["@yourgithubusername"],
-  "requirements": ["cryptography", "aiohttp", "voluptuous"]
+  "codeowners": ["@jsanchezdelvillar"],
+  "requirements": ["cryptography", "aiohttp"],
+  "iot_class": "cloud_polling",
+  "config_flow": true,
+  "services": ["get_sensor_data", "update_token"]
 }
