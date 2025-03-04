@@ -1,9 +1,9 @@
 {
-  "title": "Custom Solar Integration",
+  "title": "Sungrow Solar Integration",
   "config": {
     "step": {
       "user": {
-        "title": "Configure Custom Solar",
+        "title": "Configure Sungrow Solar",
         "description": "Enter your credentials and API keys.",
         "data": {
           "username": "Username",
