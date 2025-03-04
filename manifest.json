@@ -1,0 +1,9 @@
+{
+  "domain": "custom_solar",
+  "name": "Custom Solar",
+  "version": "1.0.0",
+  "documentation": "https://www.example.com/documentation",
+  "dependencies": [],
+  "codeowners": ["@yourgithubusername"],
+  "requirements": ["cryptography", "aiohttp", "voluptuous"]
+}
