@@ -8,6 +8,7 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType):
     """Set up the integration from configuration.yaml."""
+    _LOGGER.debug("async_setup called with config: %s", config)
     hass.data.setdefault(DOMAIN, {})
 
     async def handle_get_sensor_data(call):
@@ -30,6 +31,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType):
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up the integration from a config entry."""
+    _LOGGER.debug("async_setup_entry called with entry: %s", entry.data)
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = entry.data
 
@@ -38,4 +40,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Unload an integration entry."""
+    _LOGGER.debug("async_unload_entry called for entry: %s", entry.entry_id)
     return await hass.config_entries.async_forward_entry_unload(entry, "sensor")
