@@ -25,10 +25,12 @@ class SolarSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = name
         self._attr_unique_id = f"solar_sensor_{point_id}"
         self._state = None
+        _LOGGER.debug("Sensor %s initialized with value none", name)
 
     @property
     def state(self):
         """Return the state of the sensor."""
+        _LOGGER.debug("Getting state for sensor %s: %s", self._name, self._state)
         return self._state
 
     async def async_update(self):
