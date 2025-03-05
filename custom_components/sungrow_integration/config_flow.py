@@ -27,7 +27,7 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors = {}
         
-       _LOGGER.debug("async_step_user called with input: %s", user_input)
+        _LOGGER.debug("async_step_user called with input: %s", user_input)
 
         if user_input is not None:
             try:
