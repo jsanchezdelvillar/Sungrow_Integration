@@ -28,7 +28,11 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors = {}
         
         if user_input is not None:
-            return self.async_create_entry(title="Custom Solar", data=user_input)
+            try:
+                return self.async_create_entry(title="Custom Solar", data=user_input)
+            except Exception as e:
+                _LOGGER.error("Error creating entry: %s", e)
+                errors["base"] = "cannot_create_entry"
         
         return self.async_show_form(
             step_id="user",
