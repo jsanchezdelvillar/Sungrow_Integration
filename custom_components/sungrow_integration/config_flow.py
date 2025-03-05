@@ -27,8 +27,11 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors = {}
         
+       _LOGGER.debug("async_step_user called with input: %s", user_input)
+
         if user_input is not None:
             try:
+                _LOGGER.debug("Creating entry with data: %s", user_input)
                 return self.async_create_entry(title="Custom Solar", data=user_input)
             except Exception as e:
                 _LOGGER.error("Error creating entry: %s", e)
@@ -43,6 +46,7 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     def async_get_options_flow(entry):
+       _LOGGER.debug("async_get_options_flow called for entry: %s", entry.data)
         return OptionsFlowHandler(entry)
 
 class OptionsFlowHandler(config_entries.OptionsFlow):
