@@ -26,7 +26,7 @@ DATA_SCHEMA = vol.Schema({
     vol.Required(CONF_PUBLIC_KEY, default=secrets.get(CONF_PUBLIC_KEY, '')): str,
     vol.Required(CONF_PS_KEY, default=secrets.get(CONF_PS_KEY, '')): str,
     vol.Required(CONF_POINT_ID_LIST, default=secrets.get(CONF_POINT_ID_LIST, '')): str,
-    vol.Optional("sensor_names", default=secrets.get("sensor_names", {})): dict
+    vol.Optional("sensor_names", default=secrets.get("sensor_names", {})): vol.Schema({str: str})
 })
 
 class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
