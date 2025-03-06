@@ -46,7 +46,7 @@ class CustomSolarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     def async_get_options_flow(entry):
-       _LOGGER.debug("async_get_options_flow called for entry: %s", entry.data)
+        _LOGGER.debug("async_get_options_flow called for entry: %s", entry.data)
         return OptionsFlowHandler(entry)
 
 class OptionsFlowHandler(config_entries.OptionsFlow):
