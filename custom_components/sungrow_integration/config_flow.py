@@ -25,7 +25,7 @@ DATA_SCHEMA = vol.Schema({
     vol.Required(CONF_X_ACCESS_KEY, default=secrets.get(CONF_X_ACCESS_KEY, '')): str,
     vol.Required(CONF_PUBLIC_KEY, default=secrets.get(CONF_PUBLIC_KEY, '')): str,
     vol.Required(CONF_PS_KEY, default=secrets.get(CONF_PS_KEY, '')): str,
-    vol.Required(CONF_POINT_ID_LIST, default=secrets.get(CONF_POINT_ID_LIST, [])): list,
+    vol.Required(CONF_POINT_ID_LIST, default=secrets.get(CONF_POINT_ID_LIST, '')): str,
     vol.Optional("sensor_names", default=secrets.get("sensor_names", {})): dict
 })
 
@@ -75,6 +75,9 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         """Initialize options flow."""
         self.entry = entry
 
+    async def async_step_init(self, user_input=None):
+        """Manage the options."""
+        return self.async_show_form(step_id="init", data_schema=vol.Schema({}))
     async def async_step_init(self, user_input=None):
         """Manage the options."""
         return self.async_show_form(step_id="init", data_schema=vol.Schema({}))
