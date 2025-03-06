@@ -1,11 +1,11 @@
 {
   "domain": "sungrow_integration",
   "name": "Sungrow integration",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "documentation": "https://github.com/jsanchezdelvillar/Sungrow_Integration",
   "dependencies": [],
   "codeowners": ["@jsanchezdelvillar"],
-  "requirements": ["cryptography", "aiohttp"],
+  "requirements": ["cryptography"],
   "iot_class": "cloud_polling",
   "config_flow": true,
   "services": ["get_sensor_data", "update_token"]
