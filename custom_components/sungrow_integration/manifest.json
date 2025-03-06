@@ -1,7 +1,7 @@
 {
   "domain": "sungrow_integration",
   "name": "Sungrow integration",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "documentation": "https://github.com/jsanchezdelvillar/Sungrow_Integration",
   "dependencies": [],
   "codeowners": ["@jsanchezdelvillar"],
